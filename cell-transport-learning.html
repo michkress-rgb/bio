@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell Transport Mastery - IGCSE Biology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .gradient-bg-blue {
+            background: linear-gradient(to bottom right, #eff6ff, #f3e8ff);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .gradient-bg-purple {
+            background: linear-gradient(to bottom right, #f3e8ff, #fce7f3);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .gradient-bg-green {
+            background: linear-gradient(to bottom right, #f0fdf4, #ccfbf1);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .gradient-bg-orange {
+            background: linear-gradient(to bottom right, #fff7ed, #fef3c7);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .gradient-bg-pink {
+            background: linear-gradient(to bottom right, #fce7f3, #ffe4e6);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .gradient-bg-red {
+            background: linear-gradient(to bottom right, #fef2f2, #fff7ed);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container-narrow {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #2563eb, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #374151;
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            font-size: 1.125rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .icon-circle {
+            width: 6rem;
+            height: 6rem;
+            background: linear-gradient(to right, #3b82f6, #9333ea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-box {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .feature-box.blue {
+            background: #eff6ff;
+        }
+
+        .feature-box.purple {
+            background: #f3e8ff;
+        }
+
+        .feature-box.green {
+            background: #f0fdf4;
+        }
+
+        .btn {
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #3b82f6, #9333ea);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-box {
+            background: linear-gradient(to bottom right, #eff6ff, #f3e8ff);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .progress-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9333ea;
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: capitalize;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .activity-card:hover:not(.locked) {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .activity-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .activity-icon.blue {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
+        }
+
+        .activity-icon.purple {
+            background: linear-gradient(to right, #9333ea, #7c3aed);
+        }
+
+        .activity-icon.green {
+            background: linear-gradient(to right, #10b981, #059669);
+        }
+
+        .activity-icon.orange {
+            background: linear-gradient(to right, #f97316, #ea580c);
+        }
+
+        .activity-icon.pink {
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+
+        .activity-icon.red {
+            background: linear-gradient(to right, #ef4444, #dc2626);
+        }
+
+        .activity-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .activity-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 0.5rem;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        .progress-bar-fill.blue {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
+        }
+
+        .progress-bar-fill.purple {
+            background: linear-gradient(to right, #9333ea, #7c3aed);
+        }
+
+        .progress-bar-fill.green {
+            background: linear-gradient(to right, #10b981, #059669);
+        }
+
+        .progress-bar-fill.orange {
+            background: linear-gradient(to right, #f97316, #ea580c);
+        }
+
+        .progress-bar-fill.pink {
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+
+        .progress-bar-fill.red {
+            background: linear-gradient(to right, #ef4444, #dc2626);
+        }
+
+        .question-box {
+            background: linear-gradient(to right, #eff6ff, #f3e8ff);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            background: white;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: #9333ea;
+            background: #faf5ff;
+        }
+
+        .option-btn.selected {
+            border-color: #9333ea;
+            background: #f3e8ff;
+        }
+
+        .option-btn.correct {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .option-btn.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .button-group .btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        .result-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .result-header.correct {
+            color: #10b981;
+        }
+
+        .result-header.incorrect {
+            color: #ef4444;
+        }
+
+        .explanation {
+            font-size: 0.875rem;
+            color: #6b7280;
+            background: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .score-display {
+            background: linear-gradient(to right, #f3e8ff, #fce7f3);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .score-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #9333ea;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-message {
+            font-size: 1.125rem;
+            color: #1f2937;
+        }
+
+        .flashcard {
+            background: linear-gradient(to bottom right, #fce7f3, #ffe4e6);
+            padding: 3rem;
+            border-radius: 1rem;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .flashcard:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .flashcard-content {
+            text-align: center;
+        }
+
+        .flashcard-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(to right, #ec4899, #db2777);
+            color: white;
+        }
+
+        .tab-btn:not(.active) {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .tab-btn:not(.active):hover {
+            background: #d1d5db;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .mastery-badge {
+            text-align: right;
+        }
+
+        .mastery-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .mastery-level {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #9333ea;
+        }
+
+        .top-progress-bar {
+            height: 0.5rem;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .scenario-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .scenario-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+        }
+
+        .scenario-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .scenario-value {
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .tips-box {
+            background: #f3e8ff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .tips-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #9333ea;
+            margin-bottom: 1rem;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 0.75rem;
+            color: #374151;
+        }
+
+        .tip-icon {
+            margin-right: 0.5rem;
+            color: #9333ea;
+        }
+
+        .locked-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .award-icon {
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scenario-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active gradient-bg-blue">
+        <div class="container-narrow">
+            <div class="card text-center">
+                <div class="icon-circle">
+                    <svg width="48" height="48" fill="white" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="12" cy="12" r="3" fill="white"/>
+                    </svg>
+                </div>
+                <h1 class="title">Cell Transport Mastery</h1>
+                <h2 class="subtitle">IGCSE Biology Unit 3: Movement in and out of Cells</h2>
+                <p class="description">
+                    Master diffusion, osmosis, and active transport through interactive challenges,
+                    simulations, and games. Track your progress and achieve mastery level!
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-box blue">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
+                        <p style="font-weight: 600; color: #1e40af;">6 Activities</p>
+                    </div>
+                    <div class="feature-box purple">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+                        <p style="font-weight: 600; color: #6b21a8;">Interactive Learning</p>
+                    </div>
+                    <div class="feature-box green">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
+                        <p style="font-weight: 600; color: #065f46;">Mastery Levels</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="showScreen('menuScreen')">Begin Your Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu Screen -->
+    <div id="menuScreen" class="screen gradient-bg-blue">
+        <div class="container">
+            <div class="card" style="margin-bottom: 2rem;">
+                <div class="header-flex">
+                    <h2>Your Progress Dashboard</h2>
+                    <div class="mastery-badge">
+                        <p class="mastery-label">Mastery Level</p>
+                        <p class="mastery-level" id="masteryLevel">Beginner</p>
+                    </div>
+                </div>
+                <div class="progress-grid" id="progressGrid"></div>
+            </div>
+            
+            <div class="activity-grid" id="activityGrid"></div>
+        </div>
+    </div>
+
+    <!-- Activity Screens -->
+    <div id="conceptMatchScreen" class="screen gradient-bg-blue">
+        <div class="container-narrow">
+            <div class="card">
+                <h2 style="margin-bottom: 1rem;">Concept Matcher</h2>
+                <p style="color: #6b7280; margin-bottom: 2rem;">Match each transport process with its correct definition</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div id="conceptMatchTerms"></div>
+                    <div class="tips-box">
+                        <h3 class="tips-title">Quick Tips</h3>
+                        <div class="tip-item">
+                            <span class="tip-icon">★</span>
+                            <span>Diffusion is passive and goes down the gradient</span>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">★</span>
+                            <span>Osmosis is specific to water molecules only</span>
+                        </div>
+                        <div class="tip-item">
+                            <span class="tip-icon">★</span>
+                            <span>Active transport requires energy from respiration</span>
+                        </div>
+                        <div id="conceptMatchScore"></div>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="checkConceptMatch" onclick="checkConceptMatch()">Check Answers</button>
+                    <button class="btn btn-secondary" style="display: none;" id="retryConceptMatch" onclick="resetConceptMatch()">Try Again</button>
+                    <button class="btn btn-secondary" onclick="showScreen('menuScreen')">Back to Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="diffusionSimScreen" class="screen gradient-bg-purple">
+        <div class="container-narrow">
+            <div class="card">
+                <div class="header-flex">
+                    <h2>Diffusion Simulator</h2>
+                    <span style="font-size: 1.125rem; font-weight: 600; color: #9333ea;" id="diffusionProgress"></span>
+                </div>
+                <div class="top-progress-bar">
+                    <div class="progress-bar-fill purple" id="diffusionProgressBar" style="width: 0%"></div>
+                </div>
+                <div id="diffusionContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cellScenariosScreen" class="screen gradient-bg-green">
+        <div class="container-narrow">
+            <div class="card">
+                <div class="header-flex">
+                    <h2>Cell Scenarios</h2>
+                    <span style="font-size: 1.125rem; font-weight: 600; color: #10b981;" id="scenariosProgress"></span>
+                </div>
+                <div class="top-progress-bar">
+                    <div class="progress-bar-fill green" id="scenariosProgressBar" style="width: 0%"></div>
+                </div>
+                <div id="scenariosContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="graphAnalysisScreen" class="screen gradient-bg-orange">
+        <div class="container-narrow">
+            <div class="card">
+                <h2 style="margin-bottom: 1rem;">Graph Analysis</h2>
+                <p style="color: #6b7280; margin-bottom: 2rem;">Analyze experimental data and draw conclusions</p>
+                <div id="graphContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vocabularyScreen" class="screen gradient-bg-pink">
+        <div class="container-narrow">
+            <div class="card">
+                <h2 style="margin-bottom: 1.5rem;">Vocabulary Master</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="setVocabMode('flashcards')">Flashcards</button>
+                    <button class="tab-btn" onclick="setVocabMode('test')">Vocabulary Test</button>
+                </div>
+                <div id="vocabularyContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="masteryTestScreen" class="screen gradient-bg-red">
+        <div class="container-narrow">
+            <div class="card">
+                <div class="header-flex">
+                    <h2>Mastery Self-Test</h2>
+                    <span style="font-size: 1.125rem; font-weight: 600; color: #ef4444;" id="masteryProgress"></span>
+                </div>
+                <div class="top-progress-bar">
+                    <div class="progress-bar-fill red" id="masteryProgressBar" style="width: 0%"></div>
+                </div>
+                <div id="masteryContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let appState = {
+            progress: {
+                conceptMatch: 0,
+                diffusionSim: 0,
+                cellScenarios: 0,
+                graphAnalysis: 0,
+                vocabulary: 0,
+                masteryTest: 0
+            },
+            currentQuestion: 0,
+            answers: {},
+            showResults: false,
+            vocabMode: 'flashcards',
+            vocabCard: 0,
+            vocabFlipped: false
+        };
+
+        // Data
+        const concepts = [
+            { id: 1, term: 'Diffusion', definition: 'Movement of particles from high to low concentration' },
+            { id: 2, term: 'Osmosis', definition: 'Diffusion of water through a partially permeable membrane' },
+            { id: 3, term: 'Active Transport', definition: 'Movement against concentration gradient using energy' },
+            { id: 4, term: 'Concentration Gradient', definition: 'Difference in concentration between two areas' },
+            { id: 5, term: 'Partially Permeable Membrane', definition: 'Membrane that allows some substances through but not others' }
+        ];
+
+        const diffusionQuestions = [
+            {
+                id: 1,
+                question: 'What happens when a drop of food coloring is added to water?',
+                options: ['It stays in one place', 'It spreads out evenly over time', 'It sinks to the bottom', 'It floats on top'],
+                correct: 1,
+                explanation: 'Particles diffuse from high concentration (the drop) to low concentration (the surrounding water) until evenly distributed.'
+            },
+            {
+                id: 2,
+                question: 'Which factor does NOT affect the rate of diffusion?',
+                options: ['Temperature', 'Concentration gradient', 'Color of the substance', 'Distance'],
+                correct: 2,
+                explanation: 'Temperature, concentration gradient, surface area, and distance all affect diffusion rate. Color is not a factor.'
+            },
+            {
+                id: 3,
+                question: 'Why does diffusion occur faster at higher temperatures?',
+                options: ['Particles become larger', 'Particles have more kinetic energy and move faster', 'The concentration gradient increases', 'The membrane becomes more permeable'],
+                correct: 1,
+                explanation: 'Higher temperature gives particles more kinetic energy, causing them to move faster and collide more frequently.'
+            },
+            {
+                id: 4,
+                question: 'In which direction do particles move during diffusion?',
+                options: ['From low to high concentration', 'From high to low concentration', 'In random directions only', 'Always upwards'],
+                correct: 1,
+                explanation: 'Diffusion is the net movement from high to low concentration, down the concentration gradient.'
+            }
+        ];
+
+        const cellScenarios = [
+            {
+                id: 1,
+                cell: 'Red blood cell',
+                solution: 'Pure water (hypotonic)',
+                question: 'What will happen to the red blood cell?',
+                options: ['It will shrink and become crenated', 'It will swell and may burst (lyse)', 'It will remain the same size', 'It will become turgid'],
+                correct: 1,
+                explanation: 'Water enters the cell by osmosis because the solution is hypotonic. The cell has no cell wall, so it swells and may burst.'
+            },
+            {
+                id: 2,
+                cell: 'Plant cell',
+                solution: 'Pure water (hypotonic)',
+                question: 'What will happen to the plant cell?',
+                options: ['It will burst immediately', 'It will become turgid and firm', 'It will become plasmolysed', 'It will shrink'],
+                correct: 1,
+                explanation: 'Water enters by osmosis and the cell becomes turgid. The cell wall prevents bursting.'
+            },
+            {
+                id: 3,
+                cell: 'Plant cell',
+                solution: 'Concentrated salt solution (hypertonic)',
+                question: 'What will happen to the plant cell?',
+                options: ['It will become turgid', 'It will become plasmolysed', 'It will burst', 'Nothing will happen'],
+                correct: 1,
+                explanation: 'Water leaves the cell by osmosis. The cytoplasm shrinks away from the cell wall - this is plasmolysis.'
+            },
+            {
+                id: 4,
+                cell: 'Red blood cell',
+                solution: 'Isotonic saline solution',
+                question: 'What will happen to the red blood cell?',
+                options: ['It will burst', 'It will shrink', 'It will remain the same size', 'It will become turgid'],
+                correct: 2,
+                explanation: 'In an isotonic solution, there is no net movement of water, so the cell remains the same size.'
+            },
+            {
+                id: 5,
+                cell: 'Root hair cell',
+                solution: 'Dilute soil water',
+                question: 'How does water enter the root hair cell?',
+                options: ['By active transport using energy', 'By diffusion through the cell membrane', 'By osmosis from high to low water concentration', 'Water does not enter'],
+                correct: 2,
+                explanation: 'Water enters root hair cells by osmosis because soil water has higher water concentration than the cell sap.'
+            }
+        ];
+
+        const graphQuestions = [
+            {
+                id: 1,
+                question: 'A graph shows diffusion rate increasing with temperature. What is the relationship?',
+                options: ['Inverse relationship', 'No relationship', 'Positive correlation', 'Negative correlation'],
+                correct: 2,
+                explanation: 'As temperature increases, diffusion rate increases - this is a positive correlation.'
+            },
+            {
+                id: 2,
+                question: 'An experiment measured potato mass change in different sucrose concentrations. A potato in 0.2M sucrose gained mass. What does this tell you?',
+                options: ['The potato has higher water concentration', 'The solution is hypertonic to the potato', 'The solution is hypotonic to the potato', 'No osmosis occurred'],
+                correct: 2,
+                explanation: 'If the potato gained mass, water moved in by osmosis, meaning the solution had higher water concentration - it is hypotonic.'
+            },
+            {
+                id: 3,
+                question: 'A graph shows no change in potato mass at 0.4M sucrose concentration. What is 0.4M?',
+                options: ['Hypertonic solution', 'Hypotonic solution', 'Isotonic solution', 'Concentrated solution'],
+                correct: 2,
+                explanation: 'No net change means the solution is isotonic - same water concentration as the potato cells.'
+            },
+            {
+                id: 4,
+                question: 'In a diffusion experiment, doubling the concentration gradient would likely:',
+                options: ['Halve the diffusion rate', 'Have no effect', 'Double the diffusion rate', 'Stop diffusion'],
+                correct: 2,
+                explanation: 'Larger concentration gradients lead to faster diffusion rates - approximately proportional.'
+            }
+        ];
+
+        const vocabulary = [
+            { term: 'Diffusion', definition: 'The net movement of particles from an area of high concentration to an area of low concentration down a concentration gradient' },
+            { term: 'Osmosis', definition: 'The diffusion of water molecules from a region of higher water concentration to a region of lower water concentration through a partially permeable membrane' },
+            { term: 'Active Transport', definition: 'The movement of substances against a concentration gradient, from low to high concentration, using energy from respiration' },
+            { term: 'Concentration Gradient', definition: 'The difference in concentration of a substance between two areas' },
+            { term: 'Partially Permeable Membrane', definition: 'A membrane that allows some substances to pass through but not others' },
+            { term: 'Kinetic Energy', definition: 'The energy that particles have due to their movement' },
+            { term: 'Isotonic', definition: 'A solution with the same water concentration as the cell' },
+            { term: 'Hypotonic', definition: 'A solution with higher water concentration than the cell' },
+            { term: 'Hypertonic', definition: 'A solution with lower water concentration than the cell' },
+            { term: 'Turgid', definition: 'A plant cell that is full of water and firm' },
+            { term: 'Flaccid', definition: 'A plant cell that has lost water and become soft' },
+            { term: 'Plasmolysis', definition: 'The shrinking of the cytoplasm away from the cell wall when a plant cell loses water' }
+        ];
+
+        const masteryQuestions = [
+            {
+                id: 1,
+                question: 'Explain why root hair cells use active transport to absorb mineral ions from the soil.',
+                options: ['Because minerals are moving down their concentration gradient', 'Because mineral concentration is lower in the soil than in the root', 'Because minerals need to move against the concentration gradient', 'Because osmosis cannot move minerals'],
+                correct: 2,
+                explanation: 'Mineral ions are often in lower concentration in soil than in root cells, so active transport is needed to move them against the gradient, requiring energy.'
+            },
+            {
+                id: 2,
+                question: 'A student places potato cylinders in different concentrations of sucrose solution. In which solution would the potato lose the most mass?',
+                options: ['Pure water', '0.2M sucrose', '0.4M sucrose', '1.0M sucrose'],
+                correct: 3,
+                explanation: 'The most concentrated sucrose solution (1.0M) has the lowest water concentration, so water leaves the potato by osmosis, causing the greatest mass loss.'
+            },
+            {
+                id: 3,
+                question: 'Which of the following correctly describes the difference between diffusion and active transport?',
+                options: ['Diffusion requires energy; active transport does not', 'Diffusion goes down the gradient; active transport goes against it', 'Diffusion only occurs in gases; active transport in liquids', 'Diffusion is faster than active transport'],
+                correct: 1,
+                explanation: 'Diffusion is passive movement down the concentration gradient. Active transport requires energy to move substances against the gradient.'
+            },
+            {
+                id: 4,
+                question: 'What would happen to a plant cell placed in a solution with a higher water concentration than the cell sap?',
+                options: ['The cell becomes plasmolysed', 'The cell becomes turgid', 'The cell bursts', 'Nothing happens'],
+                correct: 1,
+                explanation: 'Water enters the cell by osmosis, making it swell. The cell wall prevents bursting, so the cell becomes turgid and firm.'
+            },
+            {
+                id: 5,
+                question: 'A student investigates how temperature affects diffusion rate. What would be the independent variable?',
+                options: ['The diffusion rate', 'The temperature', 'The concentration', 'The time taken'],
+                correct: 1,
+                explanation: 'The independent variable is what you change - in this case, temperature. Diffusion rate is the dependent variable being measured.'
+            },
+            {
+                id: 6,
+                question: 'Why do red blood cells burst in pure water but plant cells do not?',
+                options: ['Red blood cells have no cell membrane', 'Plant cells have a cell wall that provides support', 'Red blood cells are larger', 'Plant cells do not absorb water'],
+                correct: 1,
+                explanation: 'Plant cells have a strong cellulose cell wall that prevents bursting. Red blood cells only have a cell membrane, which cannot withstand the pressure.'
+            },
+            {
+                id: 7,
+                question: 'In which scenario is osmosis NOT occurring?',
+                options: ['Water moving into a root hair cell', 'Glucose being absorbed in the small intestine', 'Water moving from xylem to leaf cells', 'A cell in an isotonic solution'],
+                correct: 1,
+                explanation: 'Glucose absorption uses active transport or facilitated diffusion, not osmosis. Osmosis specifically refers to water movement through a membrane.'
+            },
+            {
+                id: 8,
+                question: 'Which factor would increase the rate of diffusion the most?',
+                options: ['Decreasing temperature by 10 degrees Celsius', 'Increasing the concentration gradient', 'Increasing the distance', 'Decreasing the surface area'],
+                correct: 1,
+                explanation: 'Increasing the concentration gradient provides a stronger driving force for diffusion. The other options would all decrease diffusion rate.'
+            },
+            {
+                id: 9,
+                question: 'A cell is placed in a solution and becomes plasmolysed. What type of solution was it?',
+                options: ['Hypotonic', 'Isotonic', 'Hypertonic', 'Pure water'],
+                correct: 2,
+                explanation: 'Plasmolysis occurs when a cell loses water. This happens in a hypertonic solution (lower water concentration than the cell).'
+            },
+            {
+                id: 10,
+                question: 'Why is active transport important for organisms?',
+                options: ['It allows random movement of all substances', 'It enables uptake of substances even when they are in low concentration', 'It requires no energy', 'It only works in plant cells'],
+                correct: 1,
+                explanation: 'Active transport allows cells to accumulate substances against their concentration gradient, which is essential for many biological processes like mineral uptake and nerve function.'
+            }
+        ];
+
+        // Helper functions
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+            
+            if (screenId === 'menuScreen') {
+                updateMenu();
+            } else if (screenId === 'conceptMatchScreen') {
+                initConceptMatch();
+            } else if (screenId === 'diffusionSimScreen') {
+                initDiffusionSim();
+            } else if (screenId === 'cellScenariosScreen') {
+                initCellScenarios();
+            } else if (screenId === 'graphAnalysisScreen') {
+                initGraphAnalysis();
+            } else if (screenId === 'vocabularyScreen') {
+                initVocabulary();
+            } else if (screenId === 'masteryTestScreen') {
+                initMasteryTest();
+            }
+        }
+
+        function updateProgress(activity, percentage) {
+            appState.progress[activity] = percentage;
+            updateMasteryLevel();
+            saveProgress();
+        }
+
+        function updateMasteryLevel() {
+            const values = Object.values(appState.progress);
+            const avg = values.reduce((a, b) => a + b, 0) / values.length;
+            
+            let level = 'Beginner';
+            if (avg >= 90) level = 'Expert';
+            else if (avg >= 75) level = 'Advanced';
+            else if (avg >= 50) level = 'Intermediate';
+            
+            document.getElementById('masteryLevel').textContent = level;
+        }
+
+        function saveProgress() {
+            localStorage.setItem('cellTransportProgress', JSON.stringify(appState.progress));
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('cellTransportProgress');
+            if (saved) {
+                appState.progress = JSON.parse(saved);
+            }
+        }
+
+        function updateMenu() {
+            // Update progress grid
+            const progressGrid = document.getElementById('progressGrid');
+            progressGrid.innerHTML = '';
+            
+            Object.entries(appState.progress).forEach(([key, value]) => {
+                const label = key.replace(/([A-Z])/g, ' $1').trim();
+                progressGrid.innerHTML += `
+                    <div class="progress-box">
+                        <div class="progress-number">${value}%</div>
+                        <div class="progress-label">${label}</div>
+                    </div>
+                `;
+            });
+            
+            // Update activity grid
+            const activities = [
+                { id: 'conceptMatch', title: 'Concept Matcher', desc: 'Match transport processes with their definitions', color: 'blue', icon: '🎯' },
+                { id: 'diffusionSim', title: 'Diffusion Simulator', desc: 'Watch particles move and answer questions', color: 'purple', icon: '⚡' },
+                { id: 'cellScenarios', title: 'Cell Scenarios', desc: 'Predict what happens to cells in different solutions', color: 'green', icon: '🔬' },
+                { id: 'graphAnalysis', title: 'Graph Analysis', desc: 'Interpret experimental data and graphs', color: 'orange', icon: '📊' },
+                { id: 'vocabulary', title: 'Vocabulary Master', desc: 'Test your knowledge of key terms', color: 'pink', icon: '📚' },
+                { id: 'masteryTest', title: 'Mastery Self-Test', desc: 'Final assessment of all concepts', color: 'red', icon: '🏆' }
+            ];
+            
+            const activityGrid = document.getElementById('activityGrid');
+            activityGrid.innerHTML = '';
+            
+            activities.forEach(activity => {
+                const progress = appState.progress[activity.id];
+                const locked = activity.id === 'masteryTest' && 
+                    Object.entries(appState.progress).slice(0, 5).some(([k, v]) => v < 70);
+                
+                const card = document.createElement('div');
+                card.className = 'activity-card' + (locked ? ' locked' : '');
+                card.onclick = locked ? null : () => showScreen(activity.id + 'Screen');
+                
+                card.innerHTML = `
+                    <div class="activity-icon ${activity.color}">${activity.icon}</div>
+                    <div class="activity-title">${activity.title}</div>
+                    <div class="activity-description">${activity.desc}</div>
+                    ${locked ? 
+                        '<div class="locked-message">Complete other activities first (70%+)</div>' :
+                        `<div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill ${activity.color}" style="width: ${progress}%"></div>
+                            </div>
+                            <span style="font-size: 0.875rem; font-weight: 600; color: #374151;">${progress}%</span>
+                        </div>`
+                    }
+                `;
+                
+                activityGrid.appendChild(card);
+            });
+            
+            updateMasteryLevel();
+        }
+
+        // Concept Match functions
+        function initConceptMatch() {
+            appState.answers = {};
+            appState.showResults = false;
+            
+            const termsDiv = document.getElementById('conceptMatchTerms');
+            const shuffled = [...concepts].sort(() => Math.random() - 0.5);
+            
+            termsDiv.innerHTML = '';
+            concepts.forEach(concept => {
+                const div = document.createElement('div');
+                div.style.cssText = 'background: #eff6ff; padding: 1rem; border-radius: 0.75rem; margin-bottom: 0.75rem;';
+                div.innerHTML = `
+                    <p style="font-weight: 600; color: #1e3a8a; margin-bottom: 0.5rem;">${concept.term}</p>
+                    <select id="select-${concept.id}" onchange="selectConceptMatch(${concept.id}, this.value)">
+                        <option value="">Select definition...</option>
+                        ${shuffled.map(s => `<option value="${s.id}">${s.definition}</option>`).join('')}
+                    </select>
+                    <div id="result-${concept.id}"></div>
+                `;
+                termsDiv.appendChild(div);
+            });
+            
+            document.getElementById('checkConceptMatch').style.display = 'inline-block';
+            document.getElementById('retryConceptMatch').style.display = 'none';
+            document.getElementById('conceptMatchScore').innerHTML = '';
+        }
+
+        function selectConceptMatch(conceptId, selectedId) {
+            appState.answers[conceptId] = parseInt(selectedId);
+        }
+
+        function checkConceptMatch() {
+            if (Object.keys(appState.answers).length < concepts.length) return;
+            
+            let correct = 0;
+            concepts.forEach(concept => {
+                const resultDiv = document.getElementById(`result-${concept.id}`);
+                const isCorrect = appState.answers[concept.id] === concept.id;
+                
+                if (isCorrect) {
+                    correct++;
+                    resultDiv.innerHTML = '<div style="color: #10b981; font-weight: 600; margin-top: 0.5rem;">✓ Correct!</div>';
+                } else {
+                    resultDiv.innerHTML = '<div style="color: #ef4444; font-weight: 600; margin-top: 0.5rem;">✗ Incorrect</div>';
+                }
+                
+                document.getElementById(`select-${concept.id}`).disabled = true;
+            });
+            
+            const percentage = Math.round((correct / concepts.length) * 100);
+            updateProgress('conceptMatch', percentage);
+            
+            document.getElementById('conceptMatchScore').innerHTML = `
+                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; margin-top: 1.5rem;">
+                    <p style="font-size: 2rem; font-weight: bold; color: #9333ea; margin-bottom: 0.5rem;">${percentage}%</p>
+                    <p style="color: #6b7280;">${
+                        percentage === 100 ? 'Perfect! You are a master!' :
+                        percentage >= 80 ? 'Excellent work!' :
+                        percentage >= 60 ? 'Good effort! Review and try again.' :
+                        'Keep studying the definitions!'
+                    }</p>
+                </div>
+            `;
+            
+            document.getElementById('checkConceptMatch').style.display = 'none';
+            document.getElementById('retryConceptMatch').style.display = 'inline-block';
+        }
+
+        function resetConceptMatch() {
+            initConceptMatch();
+        }
+
+        // Diffusion Sim functions
+        function initDiffusionSim() {
+            appState.currentQuestion = 0;
+            appState.answers = {};
+            appState.showResults = false;
+            renderDiffusionQuestion();
+        }
+
+        function renderDiffusionQuestion() {
+            const q = diffusionQuestions[appState.currentQuestion];
+            const content = document.getElementById('diffusionContent');
+            
+            document.getElementById('diffusionProgress').textContent = 
+                `Question ${appState.currentQuestion + 1} of ${diffusionQuestions.length}`;
+            document.getElementById('diffusionProgressBar').style.width = 
+                `${((appState.currentQuestion + 1) / diffusionQuestions.length) * 100}%`;
+            
+            if (!appState.showResults) {
+                content.innerHTML = `
+                    <div class="question-box">
+                        <h3 class="question-text">${q.question}</h3>
+                        <div>
+                            ${q.options.map((opt, i) => `
+                                <button class="option-btn ${appState.answers[appState.currentQuestion] === i ? 'selected' : ''}" 
+                                        onclick="selectDiffusionAnswer(${i})">
+                                    <span style="font-weight: 600; margin-right: 0.75rem;">${String.fromCharCode(65 + i)}.</span>
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        ${appState.currentQuestion > 0 ? 
+                            '<button class="btn btn-secondary" onclick="prevDiffusionQuestion()">Previous</button>' : ''}
+                        ${appState.currentQuestion < diffusionQuestions.length - 1 ?
+                            `<button class="btn btn-primary" onclick="nextDiffusionQuestion()" 
+                                ${appState.answers[appState.currentQuestion] === undefined ? 'disabled' : ''}>
+                                Next Question
+                            </button>` :
+                            `<button class="btn btn-primary" onclick="submitDiffusionAnswers()"
+                                ${Object.keys(appState.answers).length < diffusionQuestions.length ? 'disabled' : ''}>
+                                Submit Answers
+                            </button>`
+                        }
+                    </div>
+                `;
+            } else {
+                renderDiffusionResults();
+            }
+        }
+
+        function selectDiffusionAnswer(optionIndex) {
+            appState.answers[appState.currentQuestion] = optionIndex;
+            renderDiffusionQuestion();
+        }
+
+        function nextDiffusionQuestion() {
+            appState.currentQuestion++;
+            renderDiffusionQuestion();
+        }
+
+        function prevDiffusionQuestion() {
+            appState.currentQuestion--;
+            renderDiffusionQuestion();
+        }
+
+        function submitDiffusionAnswers() {
+            let correct = 0;
+            diffusionQuestions.forEach((q, i) => {
+                if (appState.answers[i] === q.correct) correct++;
+            });
+            
+            const percentage = Math.round((correct / diffusionQuestions.length) * 100);
+            updateProgress('diffusionSim', percentage);
+            appState.showResults = true;
+            renderDiffusionResults();
+        }
+
+        function renderDiffusionResults() {
+            const content = document.getElementById('diffusionContent');
+            document.getElementById('diffusionProgress').textContent = '';
+            
+            let html = '<h3 style="margin-bottom: 1.5rem;">Results</h3>';
+            
+            diffusionQuestions.forEach((q, i) => {
+                const isCorrect = appState.answers[i] === q.correct;
+                html += `
+                    <div class="result-box">
+                        <p style="font-weight: 600; margin-bottom: 0.75rem; color: #1f2937;">${q.question}</p>
+                        <div class="result-header ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
+                        </div>
+                        <p class="explanation"><strong>Explanation:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div class="score-display">
+                    <div class="score-number">${appState.progress.diffusionSim}%</div>
+                    <div class="score-message">${
+                        appState.progress.diffusionSim === 100 ? 'Perfect score! Outstanding!' :
+                        appState.progress.diffusionSim >= 75 ? 'Excellent understanding!' :
+                        appState.progress.diffusionSim >= 50 ? 'Good work! Review the explanations.' :
+                        'Keep studying! You will get there.'
+                    }</div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="initDiffusionSim()">Try Again</button>
+                    <button class="btn btn-primary" onclick="showScreen('menuScreen')">Back to Menu</button>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        // Cell Scenarios functions
+        function initCellScenarios() {
+            appState.currentQuestion = 0;
+            appState.answers = {};
+            appState.showResults = false;
+            renderCellScenario();
+        }
+
+        function renderCellScenario() {
+            const s = cellScenarios[appState.currentQuestion];
+            const content = document.getElementById('scenariosContent');
+            
+            document.getElementById('scenariosProgress').textContent = 
+                `Scenario ${appState.currentQuestion + 1} of ${cellScenarios.length}`;
+            document.getElementById('scenariosProgressBar').style.width = 
+                `${((appState.currentQuestion + 1) / cellScenarios.length) * 100}%`;
+            
+            if (!appState.showResults) {
+                content.innerHTML = `
+                    <div class="question-box">
+                        <div class="scenario-info">
+                            <div class="scenario-box">
+                                <p class="scenario-label">Cell Type</p>
+                                <p class="scenario-value" style="color: #10b981;">${s.cell}</p>
+                            </div>
+                            <div class="scenario-box">
+                                <p class="scenario-label">Solution</p>
+                                <p class="scenario-value" style="color: #14b8a6;">${s.solution}</p>
+                            </div>
+                        </div>
+                        <h3 class="question-text">${s.question}</h3>
+                        <div>
+                            ${s.options.map((opt, i) => `
+                                <button class="option-btn ${appState.answers[appState.currentQuestion] === i ? 'selected' : ''}" 
+                                        onclick="selectScenarioAnswer(${i})">
+                                    <span style="font-weight: 600; margin-right: 0.75rem;">${String.fromCharCode(65 + i)}.</span>
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        ${appState.currentQuestion > 0 ? 
+                            '<button class="btn btn-secondary" onclick="prevScenario()">Previous</button>' : ''}
+                        ${appState.currentQuestion < cellScenarios.length - 1 ?
+                            `<button class="btn btn-primary" onclick="nextScenario()" 
+                                ${appState.answers[appState.currentQuestion] === undefined ? 'disabled' : ''}>
+                                Next Scenario
+                            </button>` :
+                            `<button class="btn btn-primary" onclick="submitScenarios()"
+                                ${Object.keys(appState.answers).length < cellScenarios.length ? 'disabled' : ''}>
+                                Submit Answers
+                            </button>`
+                        }
+                    </div>
+                `;
+            } else {
+                renderScenarioResults();
+            }
+        }
+
+        function selectScenarioAnswer(optionIndex) {
+            appState.answers[appState.currentQuestion] = optionIndex;
+            renderCellScenario();
+        }
+
+        function nextScenario() {
+            appState.currentQuestion++;
+            renderCellScenario();
+        }
+
+        function prevScenario() {
+            appState.currentQuestion--;
+            renderCellScenario();
+        }
+
+        function submitScenarios() {
+            let correct = 0;
+            cellScenarios.forEach((s, i) => {
+                if (appState.answers[i] === s.correct) correct++;
+            });
+            
+            const percentage = Math.round((correct / cellScenarios.length) * 100);
+            updateProgress('cellScenarios', percentage);
+            appState.showResults = true;
+            renderScenarioResults();
+        }
+
+        function renderScenarioResults() {
+            const content = document.getElementById('scenariosContent');
+            document.getElementById('scenariosProgress').textContent = '';
+            
+            let html = '<h3 style="margin-bottom: 1.5rem;">Results</h3>';
+            
+            cellScenarios.forEach((s, i) => {
+                const isCorrect = appState.answers[i] === s.correct;
+                html += `
+                    <div class="result-box">
+                        <div style="margin-bottom: 0.75rem;">
+                            <span style="font-weight: 600; color: #10b981;">${s.cell}</span> in 
+                            <span style="font-weight: 600; color: #14b8a6;">${s.solution}</span>
+                        </div>
+                        <p style="font-weight: 600; margin-bottom: 0.75rem; color: #1f2937;">${s.question}</p>
+                        <div class="result-header ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? '✓ Correct!' : `✗ Incorrect - Correct answer: ${s.options[s.correct]}`}
+                        </div>
+                        <p class="explanation"><strong>Explanation:</strong> ${s.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div class="score-display">
+                    <div class="score-number">${appState.progress.cellScenarios}%</div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="initCellScenarios()">Try Again</button>
+                    <button class="btn btn-primary" onclick="showScreen('menuScreen')">Back to Menu</button>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        // Graph Analysis functions
+        function initGraphAnalysis() {
+            appState.answers = {};
+            appState.showResults = false;
+            renderGraphAnalysis();
+        }
+
+        function renderGraphAnalysis() {
+            const content = document.getElementById('graphContent');
+            
+            if (!appState.showResults) {
+                let html = '';
+                graphQuestions.forEach((q, qIndex) => {
+                    html += `
+                        <div class="question-box" style="margin-bottom: 1.5rem;">
+                            <h3 style="font-weight: 600; margin-bottom: 1rem; color: #1f2937;">
+                                Question ${qIndex + 1}: ${q.question}
+                            </h3>
+                            <div>
+                                ${q.options.map((opt, oIndex) => `
+                                    <button class="option-btn ${appState.answers[q.id] === oIndex ? 'selected' : ''}" 
+                                            onclick="selectGraphAnswer(${q.id}, ${oIndex})">
+                                        ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="submitGraphAnswers()"
+                            ${Object.keys(appState.answers).length < graphQuestions.length ? 'disabled' : ''}>
+                            Submit Answers
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('menuScreen')">Back</button>
+                    </div>
+                `;
+                
+                content.innerHTML = html;
+            } else {
+                renderGraphResults();
+            }
+        }
+
+        function selectGraphAnswer(questionId, optionIndex) {
+            appState.answers[questionId] = optionIndex;
+            renderGraphAnalysis();
+        }
+
+        function submitGraphAnswers() {
+            let correct = 0;
+            graphQuestions.forEach(q => {
+                if (appState.answers[q.id] === q.correct) correct++;
+            });
+            
+            const percentage = Math.round((correct / graphQuestions.length) * 100);
+            updateProgress('graphAnalysis', percentage);
+            appState.showResults = true;
+            renderGraphResults();
+        }
+
+        function renderGraphResults() {
+            const content = document.getElementById('graphContent');
+            
+            let html = '';
+            graphQuestions.forEach((q, qIndex) => {
+                const isCorrect = appState.answers[q.id] === q.correct;
+                html += `
+                    <div class="result-box">
+                        <p style="font-weight: 600; margin-bottom: 0.75rem; color: #1f2937;">
+                            Question ${qIndex + 1}: ${q.question}
+                        </p>
+                        <div class="result-header ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
+                        </div>
+                        <p class="explanation"><strong>Explanation:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div class="score-display">
+                    <div class="score-number">${appState.progress.graphAnalysis}%</div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="initGraphAnalysis()">Try Again</button>
+                    <button class="btn btn-secondary" onclick="showScreen('menuScreen')">Back</button>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        // Vocabulary functions
+        function initVocabulary() {
+            appState.vocabMode = 'flashcards';
+            appState.vocabCard = 0;
+            appState.vocabFlipped = false;
+            appState.answers = {};
+            appState.showResults = false;
+            renderVocabulary();
+        }
+
+        function setVocabMode(mode) {
+            appState.vocabMode = mode;
+            appState.answers = {};
+            appState.showResults = false;
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderVocabulary();
+        }
+
+        function renderVocabulary() {
+            const content = document.getElementById('vocabularyContent');
+            
+            if (appState.vocabMode === 'flashcards') {
+                const v = vocabulary[appState.vocabCard];
+                content.innerHTML = `
+                    <div style="margin-bottom: 1.5rem; text-align: center;">
+                        <span style="font-size: 1.125rem; font-weight: 600; color: #ec4899;">
+                            Card ${appState.vocabCard + 1} of ${vocabulary.length}
+                        </span>
+                    </div>
+                    <div class="flashcard" onclick="flipCard()">
+                        <div class="flashcard-content">
+                            <p class="flashcard-label">${appState.vocabFlipped ? 'Definition' : 'Term'} (Click to flip)</p>
+                            <p class="flashcard-text">${appState.vocabFlipped ? v.definition : v.term}</p>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="prevCard()" ${appState.vocabCard === 0 ? 'disabled' : ''}>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextCard()" 
+                            ${appState.vocabCard === vocabulary.length - 1 ? 'disabled' : ''}>
+                            Next
+                        </button>
+                    </div>
+                `;
+            } else {
+                renderVocabTest();
+            }
+        }
+
+        function flipCard() {
+            appState.vocabFlipped = !appState.vocabFlipped;
+            renderVocabulary();
+        }
+
+        function nextCard() {
+            appState.vocabCard = Math.min(vocabulary.length - 1, appState.vocabCard + 1);
+            appState.vocabFlipped = false;
+            renderVocabulary();
+        }
+
+        function prevCard() {
+            appState.vocabCard = Math.max(0, appState.vocabCard - 1);
+            appState.vocabFlipped = false;
+            renderVocabulary();
+        }
+
+        function renderVocabTest() {
+            const content = document.getElementById('vocabularyContent');
+            const testQuestions = vocabulary.slice(0, 8);
+            
+            if (!appState.showResults) {
+                let html = '';
+                testQuestions.forEach((v, index) => {
+                    const otherDefs = vocabulary.filter(x => x.term !== v.term)
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 3)
+                        .map(x => x.definition);
+                    const options = [v.definition, ...otherDefs].sort(() => Math.random() - 0.5);
+                    
+                    html += `
+                        <div class="question-box" style="margin-bottom: 1.5rem;">
+                            <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; color: #1f2937;">
+                                ${index + 1}. What is the definition of "${v.term}"?
+                            </h3>
+                            <div>
+                                ${options.map((opt, oIndex) => `
+                                    <button class="option-btn ${appState.answers[v.term] === opt ? 'selected' : ''}" 
+                                            onclick="selectVocabAnswer('${v.term}', '${opt.replace(/'/g, "\\'")}')">
+                                        ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="submitVocabTest()"
+                            ${Object.keys(appState.answers).length < testQuestions.length ? 'disabled' : ''}>
+                            Submit Test
+                        </button>
+                        <button class="btn btn-secondary" onclick="showScreen('menuScreen')">Back to Menu</button>
+                    </div>
+                `;
+                
+                content.innerHTML = html;
+            } else {
+                renderVocabTestResults();
+            }
+        }
+
+        function selectVocabAnswer(term, answer) {
+            appState.answers[term] = answer;
+            renderVocabTest();
+        }
+
+        function submitVocabTest() {
+            const testQuestions = vocabulary.slice(0, 8);
+            let correct = 0;
+            testQuestions.forEach(v => {
+                if (appState.answers[v.term] === v.definition) correct++;
+            });
+            
+            const percentage = Math.round((correct / testQuestions.length) * 100);
+            updateProgress('vocabulary', percentage);
+            appState.showResults = true;
+            renderVocabTestResults();
+        }
+
+        function renderVocabTestResults() {
+            const content = document.getElementById('vocabularyContent');
+            const testQuestions = vocabulary.slice(0, 8);
+            
+            let html = '<h3 style="margin-bottom: 1.5rem;">Test Results</h3>';
+            
+            testQuestions.forEach((v, index) => {
+                const isCorrect = appState.answers[v.term] === v.definition;
+                html += `
+                    <div class="result-box">
+                        <p style="font-weight: 600; margin-bottom: 0.75rem; color: #1f2937;">
+                            ${index + 1}. ${v.term}
+                        </p>
+                        <div class="result-header ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
+                        </div>
+                        ${!isCorrect ? `<p class="explanation"><strong>Correct answer:</strong> ${v.definition}</p>` : ''}
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div class="score-display">
+                    <div class="score-number">${appState.progress.vocabulary}%</div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="retakeVocabTest()">Retake Test</button>
+                    <button class="btn btn-secondary" onclick="showScreen('menuScreen')">Back to Menu</button>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        function retakeVocabTest() {
+            appState.answers = {};
+            appState.showResults = false;
+            renderVocabTest();
+        }
+
+        // Mastery Test functions
+        function initMasteryTest() {
+            appState.currentQuestion = 0;
+            appState.answers = {};
+            appState.showResults = false;
+            renderMasteryQuestion();
+        }
+
+        function renderMasteryQuestion() {
+            const q = masteryQuestions[appState.currentQuestion];
+            const content = document.getElementById('masteryContent');
+            
+            if (!appState.showResults) {
+                document.getElementById('masteryProgress').textContent = 
+                    `Question ${appState.currentQuestion + 1} of ${masteryQuestions.length}`;
+                document.getElementById('masteryProgressBar').style.width = 
+                    `${((appState.currentQuestion + 1) / masteryQuestions.length) * 100}%`;
+                
+                content.innerHTML = `
+                    <div class="question-box">
+                        <h3 class="question-text">${q.question}</h3>
+                        <div>
+                            ${q.options.map((opt, i) => `
+                                <button class="option-btn ${appState.answers[appState.currentQuestion] === i ? 'selected' : ''}" 
+                                        onclick="selectMasteryAnswer(${i})">
+                                    <span style="font-weight: 600; margin-right: 0.75rem;">${String.fromCharCode(65 + i)}.</span>
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        ${appState.currentQuestion > 0 ? 
+                            '<button class="btn btn-secondary" onclick="prevMasteryQuestion()">Previous</button>' : ''}
+                        ${appState.currentQuestion < masteryQuestions.length - 1 ?
+                            `<button class="btn btn-primary" onclick="nextMasteryQuestion()" 
+                                ${appState.answers[appState.currentQuestion] === undefined ? 'disabled' : ''}>
+                                Next Question
+                            </button>` :
+                            `<button class="btn btn-primary" onclick="submitMasteryTest()"
+                                ${Object.keys(appState.answers).length < masteryQuestions.length ? 'disabled' : ''}>
+                                Complete Test
+                            </button>`
+                        }
+                    </div>
+                `;
+            } else {
+                renderMasteryResults();
+            }
+        }
+
+        function selectMasteryAnswer(optionIndex) {
+            appState.answers[appState.currentQuestion] = optionIndex;
+            renderMasteryQuestion();
+        }
+
+        function nextMasteryQuestion() {
+            appState.currentQuestion++;
+            renderMasteryQuestion();
+        }
+
+        function prevMasteryQuestion() {
+            appState.currentQuestion--;
+            renderMasteryQuestion();
+        }
+
+        function submitMasteryTest() {
+            let correct = 0;
+            masteryQuestions.forEach((q, i) => {
+                if (appState.answers[i] === q.correct) correct++;
+            });
+            
+            const percentage = Math.round((correct / masteryQuestions.length) * 100);
+            updateProgress('masteryTest', percentage);
+            appState.showResults = true;
+            renderMasteryResults();
+        }
+
+        function renderMasteryResults() {
+            const content = document.getElementById('masteryContent');
+            document.getElementById('masteryProgress').textContent = '';
+            
+            let html = `
+                <div class="score-display" style="background: linear-gradient(to right, #fee2e2, #fff7ed);">
+                    <div class="award-icon">🏆</div>
+                    <div class="score-number" style="font-size: 3.5rem; color: #ef4444;">${appState.progress.masteryTest}%</div>
+                    <div style="font-size: 1.5rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">
+                        ${appState.progress.masteryTest >= 90 ? 'Outstanding Mastery!' :
+                          appState.progress.masteryTest >= 80 ? 'Excellent Performance!' :
+                          appState.progress.masteryTest >= 70 ? 'Good Understanding!' :
+                          appState.progress.masteryTest >= 60 ? 'Satisfactory Progress!' :
+                          'Keep Studying!'}
+                    </div>
+                    <p style="color: #6b7280;">
+                        You answered ${Math.round(masteryQuestions.length * appState.progress.masteryTest / 100)} out of ${masteryQuestions.length} questions correctly
+                    </p>
+                </div>
+                <h3 style="margin-bottom: 1.5rem;">Review Your Answers</h3>
+            `;
+            
+            masteryQuestions.forEach((q, i) => {
+                const isCorrect = appState.answers[i] === q.correct;
+                html += `
+                    <div class="result-box">
+                        <p style="font-weight: 600; margin-bottom: 0.75rem; color: #1f2937;">
+                            ${i + 1}. ${q.question}
+                        </p>
+                        <div class="result-header ${isCorrect ? 'correct' : 'incorrect'}">
+                            ${isCorrect ? '✓ Correct!' : `✗ Incorrect - Correct answer: ${q.options[q.correct]}`}
+                        </div>
+                        <p class="explanation"><strong>Explanation:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="initMasteryTest()">Retake Test</button>
+                    <button class="btn btn-primary" onclick="showScreen('menuScreen')">Back to Menu</button>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            loadProgress();
+            updateMasteryLevel();
+        };
+    </script>
+</body>
+</html>
