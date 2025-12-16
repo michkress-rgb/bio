@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISN AI Research Bureau | The Case Files</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'Courier', monospace;
+            background: #2a2522;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0,0,0,.05) 2px,
+                    rgba(0,0,0,.05) 4px
+                );
+            min-height: 100vh;
+            padding: 20px;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #e8dcc4;
+            padding: 30px;
+            border: 3px solid #3d3027;
+            box-shadow: 
+                inset 0 0 0 1px #3d3027,
+                8px 8px 0 rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 1px,
+                rgba(61, 48, 39, 0.03) 1px,
+                rgba(61, 48, 39, 0.03) 2px
+            );
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #3d3027;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.5);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            color: #5a4a3a;
+            letter-spacing: 2px;
+        }
+
+        .stamp {
+            display: inline-block;
+            border: 3px solid #8b0000;
+            color: #8b0000;
+            padding: 5px 15px;
+            transform: rotate(-5deg);
+            margin-top: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px;
+            border: 3px solid #3d3027;
+            background: #d4c5a9;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+        }
+
+        .tab-button.active {
+            background: #3d3027;
+            color: #e8dcc4;
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: #c4b59a;
+            transform: translateY(1px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Case File Sections */
+        .case-section {
+            background: #e8dcc4;
+            padding: 30px;
+            border: 3px solid #3d3027;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .case-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 1px,
+                rgba(61, 48, 39, 0.03) 1px,
+                rgba(61, 48, 39, 0.03) 2px
+            );
+            pointer-events: none;
+        }
+
+        .typewriter-form {
+            background: #f5f0e8;
+            padding: 25px;
+            border: 2px dashed #5a4a3a;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #3d3027;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #5a4a3a;
+            background: #fdfbf7;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+            color: #1a1a1a;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .investigator-select {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .investigator-option {
+            padding: 15px;
+            border: 3px solid #5a4a3a;
+            background: #fdfbf7;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .investigator-option:hover {
+            background: #f5f0e8;
+        }
+
+        .investigator-option.selected {
+            background: #3d3027;
+            color: #e8dcc4;
+            border-color: #3d3027;
+        }
+
+        .btn {
+            background: #3d3027;
+            color: #e8dcc4;
+            padding: 15px 40px;
+            border: 3px solid #3d3027;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            background: #2a1f17;
+            transform: translateY(2px);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: #6c5a47;
+            border-color: #6c5a47;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9em;
+        }
+
+        .btn-evidence {
+            background: #2d5016;
+            border-color: #2d5016;
+        }
+
+        .btn-caution {
+            background: #8b6914;
+            border-color: #8b6914;
+        }
+
+        .btn-closed {
+            background: #7a1a1a;
+            border-color: #7a1a1a;
+        }
+
+        /* Case Files Grid */
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .case-file {
+            background: #fdfbf7;
+            border: 3px solid #3d3027;
+            padding: 20px;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+        }
+
+        .case-file:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
+        }
+
+        .case-file.classified {
+            border-color: #2d5016;
+            background: #f0f5ed;
+        }
+
+        .case-file::before {
+            content: 'CASE FILE';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.7em;
+            color: #8b0000;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .case-file.classified::before {
+            content: 'CLASSIFIED';
+            color: #2d5016;
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            padding-right: 80px;
+        }
+
+        .case-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #3d3027;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .case-status {
+            background: #2d5016;
+            color: #e8dcc4;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .case-body {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            border-left: 3px solid #5a4a3a;
+            padding-left: 15px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            padding-top: 10px;
+            border-top: 2px dashed #5a4a3a;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #5a4a3a;
+        }
+
+        .investigator-badge {
+            background: #3d3027;
+            color: #e8dcc4;
+            padding: 5px 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .classification {
+            background: #d4c5a9;
+            padding: 5px 12px;
+            color: #3d3027;
+            font-weight: bold;
+        }
+
+        .notes-section {
+            background: #f5f0e8;
+            padding: 15px;
+            margin-top: 15px;
+            border: 2px solid #d4c5a9;
+        }
+
+        .notes-title {
+            font-weight: bold;
+            color: #3d3027;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+        }
+
+        .note {
+            background: #fdfbf7;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 3px solid #5a4a3a;
+        }
+
+        .note-author {
+            font-weight: bold;
+            color: #3d3027;
+            font-size: 0.9em;
+        }
+
+        .note-text {
+            color: #1a1a1a;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+
+        .note-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .note-input input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #5a4a3a;
+            background: #fdfbf7;
+            font-family: 'Courier New', monospace;
+        }
+
+        .case-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .evidence-marks {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #5a4a3a;
+        }
+
+        .mark-btn {
+            background: #f5f0e8;
+            border: 2px solid #5a4a3a;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .mark-btn:hover {
+            background: #e8dcc4;
+        }
+
+        .mark-btn.active {
+            background: #3d3027;
+            color: #e8dcc4;
+            border-color: #3d3027;
+        }
+
+        /* Official Report Section */
+        .report-section {
+            background: #e8dcc4;
+            padding: 30px;
+            border: 3px solid #3d3027;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px double #3d3027;
+        }
+
+        .report-content {
+            background: #fdfbf7;
+            padding: 40px;
+            border: 3px solid #3d3027;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .report-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 25px,
+                #5a4a3a 25px,
+                #5a4a3a 26px
+            );
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .report-item {
+            background: #f5f0e8;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2d5016;
+            position: relative;
+        }
+
+        .report-item h3 {
+            color: #3d3027;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .report-item p {
+            color: #1a1a1a;
+            line-height: 1.8;
+        }
+
+        .confidential-notice {
+            background: #fff8dc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #8b6914;
+            border-left: 5px solid #8b6914;
+            color: #5a4a00;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #5a4a3a;
+        }
+
+        .empty-filing-cabinet {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .files-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+        }
+
+        h2 {
+            color: #3d3027;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3d3027;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ISN AI Research Bureau</h1>
+            <div class="subtitle">Intelligence Division | Case Files</div>
+            <div class="stamp">TOP PRIORITY</div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('cases')">
+                Active Case Files
+            </button>
+            <button class="tab-button" onclick="switchTab('report')">
+                Official Report (Principal)
+            </button>
+        </div>
+
+        <!-- Active Cases Tab -->
+        <div id="cases" class="tab-content active">
+            <div class="case-section">
+                <h2>File New Intelligence Report</h2>
+                
+                <div class="typewriter-form">
+                    <div class="form-group">
+                        <label>Investigating Officer</label>
+                        <div class="investigator-select">
+                            <div class="investigator-option" id="investigator-michael" onclick="selectInvestigator('Michael')">
+                                Agent Michael
+                            </div>
+                            <div class="investigator-option" id="investigator-lisa" onclick="selectInvestigator('Lisa')">
+                                Agent Lisa
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Case Title</label>
+                        <input type="text" id="caseTitle" placeholder="Brief case designation...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Case Details</label>
+                        <textarea id="caseBody" placeholder="Enter detailed intelligence report here. Include all relevant observations and recommendations..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Classification</label>
+                        <select id="caseCategory">
+                            <option value="pedagogy">Pedagogical Methods</option>
+                            <option value="assessment">Assessment Protocols</option>
+                            <option value="tools">Technical Equipment</option>
+                            <option value="professional-development">Staff Training</option>
+                            <option value="student-support">Student Operations</option>
+                            <option value="ethics">Ethical Guidelines</option>
+                            <option value="experimental">Experimental Research</option>
+                            <option value="other">Miscellaneous</option>
+                        </select>
+                    </div>
+
+                    <button class="btn" onclick="fileCase()">File Case Report</button>
+                </div>
+
+                <h2>Open Case Files</h2>
+                
+                <div id="filesGrid" class="files-grid">
+                    <!-- Cases will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Official Report Tab -->
+        <div id="report" class="tab-content">
+            <div class="report-section">
+                <div class="report-header">
+                    <h2 style="border: none; margin: 0; padding: 0;">Official Report for Administration</h2>
+                    <button class="btn btn-evidence" onclick="downloadReport()">
+                        Download Report
+                    </button>
+                </div>
+
+                <div class="confidential-notice">
+                    <strong>CONFIDENTIAL:</strong> This document contains classified intelligence for administrative review. Only cases marked as "Cleared for Administration" will appear in this report.
+                </div>
+
+                <div class="report-content" id="reportContent">
+                    <!-- Report will be generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Wait for Firebase to load with retry
+        let retryCount = 0;
+        const maxRetries = 10;
+        
+        function checkFirebaseLoaded() {
+            if (typeof firebase !== 'undefined') {
+                console.log('Firebase loaded successfully!');
+                initializeApp();
+            } else if (retryCount < maxRetries) {
+                retryCount++;
+                console.log('Waiting for Firebase... attempt', retryCount);
+                setTimeout(checkFirebaseLoaded, 500);
+            } else {
+                console.error('Firebase failed to load after', maxRetries, 'attempts');
+                alert('ERROR: Firebase is not loading. Please:\n1. Check your internet connection\n2. Disable any ad blockers\n3. Try refreshing the page\n4. Make sure firebaseio.com is not blocked');
+            }
+        }
+
+        window.addEventListener('load', function() {
+            checkFirebaseLoaded();
+        });
+
+        function initializeApp() {
+            const firebaseConfig = {
+                apiKey: "AIzaSyDXEMGKw3g24o0a-fkrD7ywk_MOuTtZJeY",
+                authDomain: "isn-movember.firebaseapp.com",
+                databaseURL: "https://isn-movember-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "isn-movember",
+                storageBucket: "isn-movember.firebasestorage.app",
+                messagingSenderId: "397597913187",
+                appId: "1:397597913187:web:333e00f47ee6414f348856"
+            };
+
+            // Initialize Firebase
+            console.log('Initializing Firebase...');
+            firebase.initializeApp(firebaseConfig);
+            const database = firebase.database();
+            console.log('Firebase initialized successfully!');
+            
+            // Start the application
+            startApp(database);
+        }
+
+        function startApp(database) {
+            let selectedInvestigator = null;
+
+            // Tab switching
+            window.switchTab = function(tabName) {
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                document.getElementById(tabName).classList.add('active');
+                event.target.classList.add('active');
+
+                if (tabName === 'report') {
+                    loadOfficialReport();
+                }
+            };
+
+            // Investigator selection
+            window.selectInvestigator = function(investigator) {
+                selectedInvestigator = investigator;
+                document.querySelectorAll('.investigator-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                document.getElementById(`investigator-${investigator.toLowerCase()}`).classList.add('selected');
+            };
+
+            // File new case
+            window.fileCase = function() {
+                if (!selectedInvestigator) {
+                    alert('ERROR: Please designate investigating officer (Michael or Lisa)');
+                    return;
+                }
+
+                const title = document.getElementById('caseTitle').value.trim();
+                const body = document.getElementById('caseBody').value.trim();
+                const category = document.getElementById('caseCategory').value;
+
+                if (!title || !body) {
+                    alert('ERROR: Case title and details are required');
+                    return;
+                }
+
+                const newCase = {
+                    title: title,
+                    body: body,
+                    category: category,
+                    investigator: selectedInvestigator,
+                    timestamp: Date.now(),
+                    classified: false,
+                    evidence: {},
+                    notes: []
+                };
+
+                const newKey = database.ref('ai-cases').push().key;
+                database.ref(`ai-cases/${newKey}`).set(newCase)
+                    .then(() => {
+                        document.getElementById('caseTitle').value = '';
+                        document.getElementById('caseBody').value = '';
+                        alert('CASE FILED: Report successfully logged in database');
+                        loadCases();
+                    })
+                    .catch((error) => {
+                        console.error('Error filing case:', error);
+                        alert('ERROR: Failed to file case - ' + error.message);
+                    });
+            };
+
+            // Load all cases
+            function loadCases() {
+                database.ref('ai-cases').on('value', (snapshot) => {
+                    const cases = [];
+                    snapshot.forEach((childSnapshot) => {
+                        const caseData = childSnapshot.val();
+                        caseData.id = childSnapshot.key;
+                        cases.push(caseData);
+                    });
+
+                    // Sort by timestamp (newest first)
+                    cases.sort((a, b) => b.timestamp - a.timestamp);
+
+                    displayCases(cases);
+                });
+            }
+
+            // Display cases
+            function displayCases(cases) {
+                const container = document.getElementById('filesGrid');
+                
+                if (cases.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <div class="empty-filing-cabinet">[ ]</div>
+                            <h3>No Active Cases</h3>
+                            <p>File cabinet is empty. Begin investigation by filing first case report.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                cases.forEach(caseData => {
+                    const date = new Date(caseData.timestamp).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                    });
+
+                    const categoryLabels = {
+                        'pedagogy': 'PEDAGOGY',
+                        'assessment': 'ASSESSMENT',
+                        'tools': 'TECHNICAL',
+                        'professional-development': 'TRAINING',
+                        'student-support': 'STUDENT OPS',
+                        'ethics': 'ETHICS',
+                        'experimental': 'EXPERIMENTAL',
+                        'other': 'MISC'
+                    };
+
+                    const notes = caseData.notes || [];
+                    const evidence = caseData.evidence || {};
+
+                    html += `
+                        <div class="case-file ${caseData.classified ? 'classified' : ''}">
+                            <div class="case-header">
+                                <div class="case-title">${caseData.title}</div>
+                            </div>
+                            
+                            <div class="case-body">${caseData.body}</div>
+                            
+                            <div class="case-meta">
+                                <span class="investigator-badge">${caseData.investigator}</span>
+                                <span class="classification">${categoryLabels[caseData.category]}</span>
+                                <span class="meta-item">FILED: ${date}</span>
+                            </div>
+
+                            <div class="evidence-marks">
+                                <button class="mark-btn ${evidence.important ? 'active' : ''}" 
+                                        onclick="toggleEvidence('${caseData.id}', 'important')">
+                                    PRIORITY ${evidence.important || ''}
+                                </button>
+                                <button class="mark-btn ${evidence.verified ? 'active' : ''}" 
+                                        onclick="toggleEvidence('${caseData.id}', 'verified')">
+                                    VERIFIED ${evidence.verified || ''}
+                                </button>
+                                <button class="mark-btn ${evidence.review ? 'active' : ''}" 
+                                        onclick="toggleEvidence('${caseData.id}', 'review')">
+                                    REVIEW ${evidence.review || ''}
+                                </button>
+                            </div>
+
+                            ${notes.length > 0 ? `
+                                <div class="notes-section">
+                                    <div class="notes-title">Investigation Notes (${notes.length})</div>
+                                    ${notes.map(n => `
+                                        <div class="note">
+                                            <div class="note-author">${n.investigator}</div>
+                                            <div class="note-text">${n.text}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            <div class="note-input">
+                                <input type="text" id="note-${caseData.id}" placeholder="Add investigation note...">
+                                <button class="btn btn-small" onclick="addNote('${caseData.id}')">Add Note</button>
+                            </div>
+
+                            <div class="case-actions">
+                                ${!caseData.classified ? `
+                                    <button class="btn btn-small btn-evidence" onclick="classifyCase('${caseData.id}')">
+                                        Clear for Administration
+                                    </button>
+                                ` : `
+                                    <button class="btn btn-small btn-caution" onclick="declassifyCase('${caseData.id}')">
+                                        Return to Active
+                                    </button>
+                                `}
+                                <button class="btn btn-small btn-closed" onclick="closeCase('${caseData.id}')">
+                                    Close Case
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            }
+
+            // Toggle evidence mark
+            window.toggleEvidence = function(caseId, evidenceType) {
+                database.ref(`ai-cases/${caseId}/evidence/${evidenceType}`).transaction((current) => {
+                    return (current || 0) + 1;
+                });
+            };
+
+            // Add note
+            window.addNote = function(caseId) {
+                const input = document.getElementById(`note-${caseId}`);
+                const text = input.value.trim();
+                
+                if (!text) {
+                    alert('ERROR: Note content required');
+                    return;
+                }
+
+                if (!selectedInvestigator) {
+                    alert('ERROR: Please select investigating officer first');
+                    return;
+                }
+
+                const note = {
+                    investigator: selectedInvestigator,
+                    text: text,
+                    timestamp: Date.now()
+                };
+
+                database.ref(`ai-cases/${caseId}/notes`).push(note)
+                    .then(() => {
+                        input.value = '';
+                    });
+            };
+
+            // Classify case for administration
+            window.classifyCase = function(caseId) {
+                if (confirm('Mark this case as cleared for administrative review?')) {
+                    database.ref(`ai-cases/${caseId}/classified`).set(true);
+                }
+            };
+
+            // Declassify case
+            window.declassifyCase = function(caseId) {
+                if (confirm('Return this case to active investigation status?')) {
+                    database.ref(`ai-cases/${caseId}/classified`).set(false);
+                }
+            };
+
+            // Close case
+            window.closeCase = function(caseId) {
+                if (confirm('CLOSE CASE: This will permanently remove this case from the database. Confirm?')) {
+                    database.ref(`ai-cases/${caseId}`).remove();
+                }
+            };
+
+            // Load official report
+            function loadOfficialReport() {
+                database.ref('ai-cases').once('value', (snapshot) => {
+                    const cases = [];
+                    snapshot.forEach((childSnapshot) => {
+                        const caseData = childSnapshot.val();
+                        if (caseData.classified) {
+                            caseData.id = childSnapshot.key;
+                            cases.push(caseData);
+                        }
+                    });
+
+                    // Sort by category
+                    cases.sort((a, b) => a.category.localeCompare(b.category));
+
+                    displayOfficialReport(cases);
+                });
+            }
+
+            // Display official report
+            function displayOfficialReport(cases) {
+                const container = document.getElementById('reportContent');
+                
+                if (cases.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-filing-cabinet">[ ]</div>
+                            <h3>No Cases Cleared for Administration</h3>
+                            <p>Mark cases as "Cleared for Administration" in the active files to include them in this report.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const categoryNames = {
+                    'pedagogy': 'Pedagogical Methods',
+                    'assessment': 'Assessment Protocols',
+                    'tools': 'Technical Equipment & Tools',
+                    'professional-development': 'Professional Development',
+                    'student-support': 'Student Support Operations',
+                    'ethics': 'Ethical Guidelines & Policy',
+                    'experimental': 'Experimental Research',
+                    'other': 'Miscellaneous Intelligence'
+                };
+
+                // Group by category
+                const grouped = {};
+                cases.forEach(caseData => {
+                    if (!grouped[caseData.category]) {
+                        grouped[caseData.category] = [];
+                    }
+                    grouped[caseData.category].push(caseData);
+                });
+
+                let html = '<h2 style="border: none;">AI Integration Intelligence Report</h2>';
+                
+                for (const [category, categoryCases] of Object.entries(grouped)) {
+                    html += `
+                        <h3 style="color: #3d3027; margin-top: 30px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">
+                            ${categoryNames[category] || category}
+                        </h3>
+                    `;
+                    
+                    categoryCases.forEach(caseData => {
+                        html += `
+                            <div class="report-item">
+                                <h3>${caseData.title}</h3>
+                                <p>${caseData.body}</p>
+                            </div>
+                        `;
+                    });
+                }
+
+                container.innerHTML = html;
+            }
+
+            // Download report
+            window.downloadReport = function() {
+                database.ref('ai-cases').once('value', (snapshot) => {
+                    const cases = [];
+                    snapshot.forEach((childSnapshot) => {
+                        const caseData = childSnapshot.val();
+                        if (caseData.classified) {
+                            cases.push(caseData);
+                        }
+                    });
+
+                    if (cases.length === 0) {
+                        alert('ERROR: No cases cleared for administration. Mark cases first.');
+                        return;
+                    }
+
+                    // Sort by category
+                    cases.sort((a, b) => a.category.localeCompare(b.category));
+
+                    // Create HTML document
+                    let content = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Integration Report - ISN</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            line-height: 1.8;
+            color: #1a1a1a;
+        }
+        h1 {
+            color: #1a1a1a;
+            border-bottom: 3px double #1a1a1a;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h2 {
+            color: #2a2522;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .report-item {
+            background: #f8f8f8;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #2a2522;
+        }
+        .report-item h3 {
+            color: #1a1a1a;
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+        .header-info {
+            color: #5a4a3a;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .confidential {
+            text-align: center;
+            padding: 20px;
+            background: #fff8dc;
+            border: 3px double #8b6914;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="confidential">CONFIDENTIAL - FOR ADMINISTRATIVE USE ONLY</div>
+    <h1>AI Integration Intelligence Report</h1>
+    <div class="header-info">
+        International School Neustadt<br>
+        Research Bureau: AI Integration Division<br>
+        Investigating Officers: Michael & Lisa<br>
+        Report Date: ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+    </div>
+`;
+
+                    const categoryNames = {
+                        'pedagogy': 'Pedagogical Methods',
+                        'assessment': 'Assessment Protocols',
+                        'tools': 'Technical Equipment & Tools',
+                        'professional-development': 'Professional Development',
+                        'student-support': 'Student Support Operations',
+                        'ethics': 'Ethical Guidelines & Policy',
+                        'experimental': 'Experimental Research',
+                        'other': 'Miscellaneous Intelligence'
+                    };
+
+                    // Group by category
+                    const grouped = {};
+                    cases.forEach(caseData => {
+                        if (!grouped[caseData.category]) {
+                            grouped[caseData.category] = [];
+                        }
+                        grouped[caseData.category].push(caseData);
+                    });
+
+                    for (const [category, categoryCases] of Object.entries(grouped)) {
+                        content += `<h2>${categoryNames[category] || category}</h2>`;
+                        
+                        categoryCases.forEach(caseData => {
+                            content += `
+                                <div class="report-item">
+                                    <h3>${caseData.title}</h3>
+                                    <p>${caseData.body}</p>
+                                </div>
+                            `;
+                        });
+                    }
+
+                    content += `
+</body>
+</html>
+                    `;
+
+                    // Create and download file
+                    const blob = new Blob([content], { type: 'text/html' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `AI-Intelligence-Report-${new Date().toISOString().split('T')[0]}.html`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    alert('REPORT DOWNLOADED: Document ready for administrative review');
+                });
+            };
+
+            // Initialize
+            loadCases();
+        }
+    </script>
+</body>
+</html>
